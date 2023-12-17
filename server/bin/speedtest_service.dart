@@ -26,6 +26,7 @@ class SpeedTestService extends SpeedTestServiceBase {
 
     //? sending
     while (bytes.isNotEmpty) {
+      await Future.delayed(const Duration(microseconds: 500));
       final data = bytes.take(chunkSize);
       sentBytes += data.length;
       yield DownloadData(
