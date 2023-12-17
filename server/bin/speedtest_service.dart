@@ -27,16 +27,12 @@ class SpeedTestService extends SpeedTestServiceBase {
     //? sending
     while (bytes.isNotEmpty) {
       final data = bytes.take(chunkSize);
-      if (chunkSize == data.length) {
-        bytes.removeRange(0, chunkSize);
-      } else {
-        bytes.removeRange(0, data.length);
-      }
       sentBytes += data.length;
       yield DownloadData(
         data: data.toList(),
         progress: ((sentBytes / totalBytes) * 100).roundToDouble(),
       );
+      bytes.removeRange(0, data.length);
     }
   }
 
