@@ -23,7 +23,7 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     super.initState();
     _channel = ClientChannel(
-      '192.168.72.14',
+      '141.148.203.16',
       port: int.parse(Platform.environment['port'] ?? '4001'),
       options: const ChannelOptions(
         credentials: ChannelCredentials.insecure(),
