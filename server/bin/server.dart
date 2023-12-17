@@ -16,7 +16,7 @@ Future<void> main(List<String> arguments) async {
   );
 
   await server.serve(
-    port: int.parse(Platform.environment['port'] ?? '8080'),
+    port: int.parse(Platform.environment['port'] ?? '4001'),
   );
   print('Server started on ${server.port}');
 }
