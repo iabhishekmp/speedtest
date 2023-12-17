@@ -5,14 +5,9 @@ service SpeedTest {
   rpc DownloadFile(DownloadRequest) returns (stream DownloadData);
 };
 
-enum FileSize {
-  MB1 = 0;
-  MB25 = 1;
-}
-
 message DownloadRequest {
   int32 chunkSize = 1;
-  FileSize fileSize = 2;
+  int32 totalSize = 2;
 }
 
 message DownloadData {

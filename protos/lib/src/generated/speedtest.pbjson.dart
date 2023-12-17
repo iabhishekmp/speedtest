@@ -13,32 +13,19 @@ import 'dart:convert' as $convert;
 import 'dart:core' as $core;
 import 'dart:typed_data' as $typed_data;
 
-@$core.Deprecated('Use fileSizeDescriptor instead')
-const FileSize$json = {
-  '1': 'FileSize',
-  '2': [
-    {'1': 'MB1', '2': 0},
-    {'1': 'MB25', '2': 1},
-  ],
-};
-
-/// Descriptor for `FileSize`. Decode as a `google.protobuf.EnumDescriptorProto`.
-final $typed_data.Uint8List fileSizeDescriptor = $convert.base64Decode(
-    'CghGaWxlU2l6ZRIHCgNNQjEQABIICgRNQjI1EAE=');
-
 @$core.Deprecated('Use downloadRequestDescriptor instead')
 const DownloadRequest$json = {
   '1': 'DownloadRequest',
   '2': [
     {'1': 'chunkSize', '3': 1, '4': 1, '5': 5, '10': 'chunkSize'},
-    {'1': 'fileSize', '3': 2, '4': 1, '5': 14, '6': '.FileSize', '10': 'fileSize'},
+    {'1': 'totalSize', '3': 2, '4': 1, '5': 5, '10': 'totalSize'},
   ],
 };
 
 /// Descriptor for `DownloadRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List downloadRequestDescriptor = $convert.base64Decode(
-    'Cg9Eb3dubG9hZFJlcXVlc3QSHAoJY2h1bmtTaXplGAEgASgFUgljaHVua1NpemUSJQoIZmlsZV'
-    'NpemUYAiABKA4yCS5GaWxlU2l6ZVIIZmlsZVNpemU=');
+    'Cg9Eb3dubG9hZFJlcXVlc3QSHAoJY2h1bmtTaXplGAEgASgFUgljaHVua1NpemUSHAoJdG90YW'
+    'xTaXplGAIgASgFUgl0b3RhbFNpemU=');
 
 @$core.Deprecated('Use downloadDataDescriptor instead')
 const DownloadData$json = {

@@ -13,21 +13,17 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'speedtest.pbenum.dart';
-
-export 'speedtest.pbenum.dart';
-
 class DownloadRequest extends $pb.GeneratedMessage {
   factory DownloadRequest({
     $core.int? chunkSize,
-    FileSize? fileSize,
+    $core.int? totalSize,
   }) {
     final $result = create();
     if (chunkSize != null) {
       $result.chunkSize = chunkSize;
     }
-    if (fileSize != null) {
-      $result.fileSize = fileSize;
+    if (totalSize != null) {
+      $result.totalSize = totalSize;
     }
     return $result;
   }
@@ -37,7 +33,7 @@ class DownloadRequest extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DownloadRequest', createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'chunkSize', $pb.PbFieldType.O3, protoName: 'chunkSize')
-    ..e<FileSize>(2, _omitFieldNames ? '' : 'fileSize', $pb.PbFieldType.OE, protoName: 'fileSize', defaultOrMaker: FileSize.MB1, valueOf: FileSize.valueOf, enumValues: FileSize.values)
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'totalSize', $pb.PbFieldType.O3, protoName: 'totalSize')
     ..hasRequiredFields = false
   ;
 
@@ -72,13 +68,13 @@ class DownloadRequest extends $pb.GeneratedMessage {
   void clearChunkSize() => clearField(1);
 
   @$pb.TagNumber(2)
-  FileSize get fileSize => $_getN(1);
+  $core.int get totalSize => $_getIZ(1);
   @$pb.TagNumber(2)
-  set fileSize(FileSize v) { setField(2, v); }
+  set totalSize($core.int v) { $_setSignedInt32(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasFileSize() => $_has(1);
+  $core.bool hasTotalSize() => $_has(1);
   @$pb.TagNumber(2)
-  void clearFileSize() => clearField(2);
+  void clearTotalSize() => clearField(2);
 }
 
 class DownloadData extends $pb.GeneratedMessage {

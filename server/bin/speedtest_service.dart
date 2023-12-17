@@ -1,6 +1,6 @@
-import 'dart:io';
+import 'dart:math';
+import 'dart:typed_data';
 
-import 'package:async/async.dart';
 import 'package:protos/protos.dart';
 
 class SpeedTestService extends SpeedTestServiceBase {
@@ -9,27 +9,34 @@ class SpeedTestService extends SpeedTestServiceBase {
     ServiceCall call,
     DownloadRequest request,
   ) async* {
-    final file = switch (request.fileSize) {
-      FileSize.MB1 => File('bin/fake1.txt'),
-      FileSize.MB25 => File('bin/fake.txt'),
-      _ => File('bin/fake1.txt'),
-    };
-    final r = ChunkedStreamReader(file.openRead());
-    final totalSize = await file.length();
+    //? request parameters
+    final chunkSize = request.chunkSize;
+    final totalBytes = request.totalSize;
+
+    //? calculation variables
     int sentBytes = 0;
-    try {
-      while (sentBytes != totalSize) {
-        final data = await r.readChunk(request.chunkSize);
-        sentBytes += data.length;
-        yield DownloadData(
-          data: data,
-          progress: ((sentBytes / totalSize) * 100).roundToDouble(),
-        );
+
+    //? generating random bytes
+    final bytes = Uint8List.fromList(
+      List.generate(
+        totalBytes,
+        (_) => Random().nextInt(256),
+      ),
+    ).toList();
+
+    //? sending
+    while (bytes.isNotEmpty) {
+      final data = bytes.take(chunkSize);
+      if (chunkSize == data.length) {
+        bytes.removeRange(0, chunkSize);
+      } else {
+        bytes.removeRange(0, data.length);
       }
-    } catch (e, st) {
-      print("Error in downloadFile, $e, $st");
-    } finally {
-      r.cancel();
+      sentBytes += data.length;
+      yield DownloadData(
+        data: data.toList(),
+        progress: ((sentBytes / totalBytes) * 100).roundToDouble(),
+      );
     }
   }
 
